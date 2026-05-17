@@ -21,7 +21,6 @@
 ```
 d:/AutoNetwork/
 ├── index.html                  # 主页面: 三栏布局 + 全部模态框 HTML
-├── base64.txt                  # 赞赏二维码 base64 图片源
 ├── readme.md                   # 本文件
 ├── css/
 │   └── style.css               # 全局样式 (1227 行): 蓝调网管风、组件样式
@@ -31,7 +30,6 @@ d:/AutoNetwork/
     ├── analyzer.js             # 拓扑分析引擎: 层级推导、VLAN 反推、网关推导
     ├── ui-controller.js        # UI 控制层: 表单双向绑定、所有弹窗逻辑、校验
     ├── app.js                  # 应用入口: 启动、工具栏绑定、快捷键
-    ├── donate-qr.js            # 赞赏二维码 (XOR 混淆 + base64)
     └── templates/
         ├── registry.js                 # 模板注册中心 + 匹配引擎
         ├── huawei_router.js            # 华为路由器 VRP
@@ -313,7 +311,7 @@ G6 Edge Model = {
 7. 拓扑 JSON 导入导出、预设案例快速加载
 8. 完全离线运行, 无后端依赖
 
-**使用方式**: 浏览器访问 `http://127.0.0.1:8080`, 拖设备 → 连线 → 配参数 → 生成命令 → 复制到交换机执行
+**使用方式**: 浏览器访问 `index.html`, 拖设备 → 连线 → 配参数 → 生成命令 → 复制到交换机执行
 
 ---
 
