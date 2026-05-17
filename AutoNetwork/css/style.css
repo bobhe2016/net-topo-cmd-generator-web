@@ -1,0 +1,1227 @@
+/* ============================================================
+   Network Topology Configuration Tool — Stylesheet
+   清爽蓝调网管风格，桌面端布局
+   ============================================================ */
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --blue-900: #0F172A;
+  --blue-800: #1E3A5F;
+  --blue-700: #1E40AF;
+  --blue-600: #2563EB;
+  --blue-500: #3B82F6;
+  --blue-400: #60A5FA;
+  --blue-300: #93C5FD;
+  --blue-200: #BFDBFE;
+  --blue-100: #DBEAFE;
+  --blue-50:  #EFF6FF;
+
+  --bg-body:        #E8EDF2;
+  --bg-header:      #1E3A5F;
+  --bg-sidebar:     #FFFFFF;
+  --bg-canvas:      #D4DCE4;
+  --bg-input:       #F8FAFC;
+  --bg-input-focus: #FFFFFF;
+  --bg-section:     #F1F5F9;
+  --bg-hover:       #F8FAFC;
+
+  --text-primary:   #1E293B;
+  --text-secondary: #475569;
+  --text-muted:     #94A3B8;
+  --text-inverse:   #FFFFFF;
+
+  --border-light:   #E2E8F0;
+  --border-medium:  #CBD5E1;
+
+  --accent:         #2563EB;
+  --accent-light:   #DBEAFE;
+  --success:        #10B981;
+  --warning:        #F59E0B;
+  --danger:         #EF4444;
+
+  --shadow-sm:  0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md:  0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+  --shadow-lg:  0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+
+  --header-height:   48px;
+  --left-panel-w:    230px;
+  --right-panel-w:   290px;
+
+  --font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+  --font-mono:   'Cascadia Code', 'Fira Code', 'Consolas', 'Courier New', monospace;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-family);
+  font-size: 13px;
+  color: var(--text-primary);
+  background: var(--bg-body);
+}
+
+/* ============================================================
+   HEADER / TOOLBAR
+   ============================================================ */
+#toolbar {
+  height: var(--header-height);
+  background: linear-gradient(135deg, #1E3A5F 0%, #1a3550 100%);
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  gap: 6px;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  z-index: 100;
+  user-select: none;
+}
+
+#toolbar .logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-inverse);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  margin-right: 12px;
+  white-space: nowrap;
+}
+
+#toolbar .logo .icon {
+  width: 26px;
+  height: 26px;
+  background: var(--blue-400);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+#toolbar .toolbar-group {
+  display: flex;
+  gap: 3px;
+}
+
+#toolbar .toolbar-sep {
+  width: 1px;
+  height: 22px;
+  background: rgba(255,255,255,0.18);
+  margin: 0 6px;
+}
+
+#toolbar button {
+  padding: 5px 11px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.08);
+  color: var(--text-inverse);
+  font-size: 12px;
+  font-family: var(--font-family);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+#toolbar button:hover {
+  background: rgba(255,255,255,0.16);
+  border-color: rgba(255,255,255,0.3);
+}
+
+#toolbar button.btn-primary {
+  background: var(--blue-500);
+  border-color: var(--blue-500);
+  font-weight: 500;
+}
+
+#toolbar button.btn-primary:hover {
+  background: var(--blue-600);
+  border-color: var(--blue-600);
+}
+
+/* --- Dropdown menu (常用案例) --- */
+.dropdown-wrapper {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  min-width: 200px;
+  background: var(--bg-sidebar);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: 200;
+  overflow: hidden;
+}
+
+.preset-item {
+  padding: 9px 14px;
+  font-size: 12px;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background 0.12s;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.preset-item:last-child {
+  border-bottom: none;
+}
+
+.preset-item:hover {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+/* ============================================================
+   MAIN LAYOUT
+   ============================================================ */
+#main-container {
+  display: flex;
+  height: calc(100% - var(--header-height));
+  overflow: hidden;
+}
+
+/* ============================================================
+   LEFT PANEL — 分类设备面板
+   ============================================================ */
+#left-panel {
+  width: var(--left-panel-w);
+  min-width: var(--left-panel-w);
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  z-index: 10;
+}
+
+#left-panel .panel-header {
+  padding: 10px 14px;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-section);
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+#left-panel .panel-header .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--blue-500);
+}
+
+#palette-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* 设备分类块 */
+.device-category {
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 6px;
+}
+
+.device-category:last-child {
+  border-bottom: none;
+}
+
+.category-header {
+  padding: 10px 14px 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg-sidebar);
+}
+
+.cat-icon {
+  font-size: 13px;
+}
+
+/* HTML5 拖拽设备项 */
+.category-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 6px 10px 10px;
+}
+
+.palette-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  width: 70px;
+  padding: 6px 4px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  background: var(--bg-input);
+  cursor: grab;
+  transition: all 0.15s;
+  user-select: none;
+}
+
+.palette-item:hover {
+  background: var(--accent-light);
+  border-color: var(--accent);
+  box-shadow: 0 2px 6px rgba(37,99,235,0.15);
+  transform: translateY(-1px);
+}
+
+.palette-item:active {
+  cursor: grabbing;
+  transform: scale(0.95);
+}
+
+.palette-item svg {
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+.palette-item span {
+  font-size: 10px;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.2;
+  pointer-events: none;
+}
+
+/* G6 缩略图 */
+.g6-minimap {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  background: var(--bg-sidebar);
+  z-index: 5;
+}
+
+/* ============================================================
+   CENTER PANEL — 拓扑画布
+   ============================================================ */
+#center-panel {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-canvas);
+}
+
+#diagram-container {
+  width: 100%;
+  height: 100%;
+  background: var(--bg-canvas);
+}
+
+/* ============================================================
+   RIGHT PANEL — 参数配置
+   ============================================================ */
+#right-panel {
+  width: var(--right-panel-w);
+  min-width: var(--right-panel-w);
+  background: var(--bg-sidebar);
+  border-left: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  z-index: 10;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Form sections --- */
+.form-section {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.form-section:last-child {
+  border-bottom: none;
+}
+
+.form-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-group {
+  margin-bottom: 8px;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-group label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 3px;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-family: var(--font-family);
+  color: var(--text-primary);
+  background: var(--bg-input);
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-light);
+  background: var(--bg-input-focus);
+}
+
+.form-group input:read-only,
+.form-group textarea:read-only {
+  background: var(--bg-section);
+  color: var(--text-secondary);
+}
+
+.form-group input:read-only:focus {
+  border-color: var(--border-medium);
+  box-shadow: none;
+}
+
+.form-group select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%23475569'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 26px;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 60px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* Checkbox group */
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px 10px;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-primary);
+  cursor: pointer;
+  margin: 0;
+  font-weight: 400;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--accent);
+  cursor: pointer;
+  margin: 0;
+}
+
+/* Buttons in right panel */
+.btn-generate {
+  width: 100%;
+  padding: 8px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font-family);
+  cursor: pointer;
+  transition: background 0.15s;
+  letter-spacing: 0.2px;
+}
+
+.btn-generate:hover {
+  background: var(--blue-700);
+}
+
+.btn-generate:active {
+  background: var(--blue-800);
+}
+
+.btn-inline {
+  font-size: 11px;
+  padding: 3px 8px;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  background: var(--bg-input);
+  color: var(--accent);
+  cursor: pointer;
+  font-family: var(--font-family);
+  transition: background 0.12s, border-color 0.12s;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.btn-inline:hover {
+  background: var(--accent-light);
+  border-color: var(--accent);
+}
+
+/* --- Connection list --- */
+.connection-list {
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+.conn-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px;
+  font-size: 12px;
+  background: var(--bg-section);
+  border-radius: var(--radius-sm);
+  margin-bottom: 3px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.conn-item:last-child {
+  margin-bottom: 0;
+}
+
+.conn-port {
+  color: var(--accent);
+  font-weight: 600;
+  min-width: 50px;
+}
+
+.conn-arrow {
+  color: var(--text-muted);
+}
+
+.conn-peer {
+  color: var(--text-primary);
+}
+
+.conn-empty {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+/* --- No-selection placeholder --- */
+.no-selection {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 13px;
+  padding: 20px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.no-selection .icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+  opacity: 0.4;
+}
+
+/* ============================================================
+   STATUS BAR
+   ============================================================ */
+#statusbar {
+  height: 22px;
+  background: #1E3A5F;
+  color: rgba(255,255,255,0.65);
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  gap: 16px;
+  z-index: 100;
+}
+
+#statusbar span {
+  white-space: nowrap;
+}
+
+/* ============================================================
+   SCROLLBARS
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-medium);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ============================================================
+   CONTEXT MENU (右键菜单)
+   ============================================================ */
+.context-menu {
+  position: fixed;
+  background: var(--bg-sidebar);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  min-width: 160px;
+  padding: 4px 0;
+  user-select: none;
+}
+
+.ctx-item {
+  padding: 8px 16px;
+  font-size: 12px;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background 0.1s;
+  white-space: nowrap;
+}
+
+.ctx-item:hover {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+.ctx-sep {
+  height: 1px;
+  background: var(--border-light);
+  margin: 4px 0;
+}
+
+/* ============================================================
+   PORT SELECTION MODAL (端口选择弹窗)
+   ============================================================ */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15,23,42,0.5);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-box {
+  background: var(--bg-sidebar);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  width: 580px;
+  max-width: 95vw;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modal-header {
+  padding: 14px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-inverse);
+  background: var(--bg-header);
+  letter-spacing: 0.3px;
+}
+
+.modal-body {
+  padding: 16px 18px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.modal-footer {
+  padding: 12px 18px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  border-top: 1px solid var(--border-light);
+  background: var(--bg-section);
+}
+
+.modal-footer button {
+  padding: 7px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-family: var(--font-family);
+  cursor: pointer;
+  border: 1px solid var(--border-medium);
+  background: var(--bg-sidebar);
+  color: var(--text-primary);
+  transition: background 0.12s;
+}
+
+.modal-footer button:hover {
+  background: var(--bg-hover);
+}
+
+.modal-footer button.btn-primary {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.modal-footer button.btn-primary:hover {
+  background: var(--blue-700);
+}
+
+.port-select-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.port-select-col {
+  flex: 1;
+  min-width: 0;
+}
+
+.port-select-arrow {
+  font-size: 24px;
+  padding-top: 24px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.port-col-title {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.port-col-title strong {
+  color: var(--text-primary);
+}
+
+.port-list-scroll {
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.port-cat-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  padding: 6px 0 4px;
+  letter-spacing: 0.3px;
+}
+
+.port-option {
+  display: block;
+  padding: 4px 8px;
+  margin: 1px 0;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.1s;
+  user-select: none;
+}
+
+.port-option:hover {
+  background: var(--accent-light);
+}
+
+.port-option input[type="radio"] {
+  margin-right: 6px;
+  accent-color: var(--accent);
+}
+
+.port-option.port-used {
+  color: var(--text-muted);
+  text-decoration: line-through;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.port-option.port-used:hover {
+  background: transparent;
+}
+
+.port-option.port-used input[type="radio"] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ============================================================
+   LINK TYPE SELECTOR (网线/光纤切换)
+   ============================================================ */
+.link-type-group {
+  display: flex;
+  gap: 6px;
+  padding: 6px 10px 10px;
+}
+
+.link-type-btn {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  background: var(--bg-input);
+  font-size: 11px;
+  font-family: var(--font-family);
+  cursor: pointer;
+  transition: all 0.12s;
+  text-align: center;
+}
+
+.link-type-btn:hover {
+  background: var(--accent-light);
+  border-color: var(--accent);
+}
+
+.link-type-btn.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+/* ============================================================
+   G6 BRUSH SELECT (框选矩形)
+   ============================================================ */
+.g6-component-brush {
+  border: 1px dashed #3B82F6 !important;
+  background: rgba(59,130,246,0.08) !important;
+}
+
+/* ============================================================
+   TERMINAL MODAL — 批量命令输出 (黑底白字终端)
+   ============================================================ */
+.terminal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 3000;
+  align-items: center;
+  justify-content: center;
+}
+
+.terminal-box {
+  background: #0C1117;
+  border: 1px solid #30363D;
+  border-radius: 10px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  width: 85vw;
+  max-width: 1100px;
+  height: 82vh;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: #161B22;
+  border-bottom: 1px solid #30363D;
+  flex-shrink: 0;
+}
+
+.terminal-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #E6EDF3;
+  letter-spacing: 0.3px;
+}
+
+.terminal-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.terminal-actions button {
+  padding: 5px 14px;
+  border: 1px solid #30363D;
+  border-radius: 6px;
+  background: #21262D;
+  color: #C9D1D9;
+  font-size: 12px;
+  font-family: 'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.terminal-actions button:hover {
+  background: #30363D;
+  border-color: #58A6FF;
+  color: #E6EDF3;
+}
+
+.terminal-body {
+  flex: 1;
+  overflow: auto;
+  margin: 0;
+  padding: 20px 24px;
+  background: #0C1117;
+  color: #E6EDF3;
+  font-family: 'Cascadia Code','Fira Code','Consolas','Courier New',monospace;
+  font-size: 13px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  word-break: break-all;
+  tab-size: 2;
+}
+
+/* 命令注释 (紫色) */
+.terminal-body .t-comment { color: #8B949E; }
+/* 命令行 (绿色) */
+.terminal-body .t-cmd { color: #7EE787; }
+/* 功能标签 (黄色) */
+.terminal-body .t-header { color: #F0C000; }
+
+/* ============================================================
+   VLAN SECTION — 三层交换机 VLAN 配置区段 (醒目样式)
+   ============================================================ */
+#vlan-section {
+  background: linear-gradient(135deg, #EFF6FF 0%, #F8FAFC 100%);
+  border: 1px solid #BFDBFE;
+  border-radius: var(--radius-md);
+  margin: 6px 10px;
+  padding: 10px 12px !important;
+}
+
+#vlan-section .form-section-title {
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+#vlan-section .btn-inline {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+  font-weight: 600;
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+#vlan-section .btn-inline:hover {
+  background: var(--blue-700);
+}
+
+/* VLAN 区段默认隐藏, JS 通过切换 .vlan-visible 控制 */
+.vlan-section-cls { display: none; }
+.vlan-section-cls.vlan-visible { display: block; }
+
+/* 红色告警提示 */
+.vlan-alert {
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: #DC2626;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   VLAN BATCH EDIT TABLE
+   ============================================================ */
+.vlan-summary {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.vlan-table-wrap {
+  max-height: 420px;
+  overflow-y: auto;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+}
+
+.vlan-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.vlan-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.vlan-table th {
+  background: var(--bg-section);
+  padding: 7px 8px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-bottom: 2px solid var(--border-medium);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.vlan-table td {
+  padding: 4px 6px;
+  border-bottom: 1px solid var(--border-light);
+  vertical-align: middle;
+}
+
+.vlan-table input {
+  width: 100%;
+  padding: 4px 6px;
+  border: 1px solid var(--border-medium);
+  border-radius: 3px;
+  font-size: 12px;
+  font-family: var(--font-family);
+  outline: none;
+  box-sizing: border-box;
+}
+
+.vlan-table input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-light);
+}
+
+.vlan-table .id-col input { width: 48px; text-align: center; }
+.vlan-table .name-col input { width: 80px; }
+.vlan-table .desc-col input { width: 100px; }
+.vlan-table .ip-col input { width: 110px; font-family: var(--font-mono); }
+.vlan-table .mask-col input { width: 100px; font-family: var(--font-mono); }
+.vlan-table .act-col { width: 32px; text-align: center; }
+
+.vlan-table .del-row-btn {
+  background: none;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 2px 6px;
+  line-height: 1;
+}
+.vlan-table .del-row-btn:hover { background: #FEE2E2; border-radius: 3px; }
+
+.btn-small {
+  padding: 5px 12px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  background: var(--accent-light);
+  color: var(--accent);
+  font-size: 12px;
+  font-family: var(--font-family);
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.btn-small:hover { background: var(--accent); color: white; }
+
+/* ============================================================
+   DONATE BOX (左侧打赏区)
+   ============================================================ */
+.donate-box {
+  padding: 8px 10px 10px;
+  text-align: center;
+}
+
+.donate-text {
+  font-size: 10px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0 0 8px 0;
+}
+
+.donate-qr {
+  width: 100%;
+  max-width: 210px;
+  height: 160px;
+  margin: 0 auto;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.donate-qr img {
+  width: 320px;
+  height: 234px;
+  transform: scale(0.68);
+  transform-origin: center center;
+}
+
+/* 关于弹窗中的二维码 (实际大小) */
+.about-qr {
+  width: 471px;
+  height: 344px;
+  margin: 10px auto 0;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.about-qr img {
+  width: 471px;
+  height: 344px;
+  object-fit: contain;
+}
+
+/* 左侧 QR 悬停弹出层 */
+.donate-hover-popup {
+  display: none;
+  position: fixed;
+  left: 240px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5000;
+  background: white;
+  border: 2px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 8px;
+}
+
+.donate-hover-popup img {
+  width: 471px;
+  height: 344px;
+  display: block;
+}
+
+.donate-hover-popup .popup-close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 22px;
+  height: 22px;
+  background: var(--danger);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================================
+   DEVICE PROPERTIES MODAL (设备属性弹窗)
+   ============================================================ */
+.props-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.props-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.props-row label {
+  width: 80px;
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+.props-row input,
+.props-row select {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-family: var(--font-family);
+  color: var(--text-primary);
+  background: var(--bg-input);
+  outline: none;
+}
+
+.props-row input:focus,
+.props-row select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-light);
+}
+
+.props-row input:read-only {
+  background: var(--bg-section);
+  color: var(--text-secondary);
+}
+
+#props-layer { display: none; }
+#props-layer.show { display: inline-block; }
+
